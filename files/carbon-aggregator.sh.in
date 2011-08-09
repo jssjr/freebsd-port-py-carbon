@@ -1,0 +1,28 @@
+#!/bin/sh
+
+case "$1" in
+start)
+	echo -n 'Starting carbon-aggregator...'
+	%%GRAPHITE_BASE%%/bin/carbon-aggregator.py start
+	[ "$?" -eq "0" ] && echo " OK" || echo " Failed"
+	;;
+stop)
+	%%GRAPHITE_BASE%%/bin/carbon-aggregator.py stop
+	sleep 3
+	;;
+status)
+	%%GRAPHITE_BASE%%/bin/carbon-aggregator.py status
+	;;
+restart)
+	%%GRAPHITE_BASE%%/bin/carbon-aggregator.py stop
+	sleep 3
+	echo -n 'Starting carbon-aggregator...'
+	%%GRAPHITE_BASE%%/bin/carbon-aggregator.py start
+	[ "$?" -eq "0" ] && echo " OK" || echo " Failed"
+	;;
+*)
+	echo "Usage: `basename $0` {start|stop|restart|status}" >&2
+	;;
+esac
+
+exit 0

@@ -1,0 +1,62 @@
+bin/carbon-aggregator.py
+bin/carbon-cache.py
+bin/carbon-relay.py
+graphite/bin/carbon-aggregator.py
+graphite/bin/carbon-cache.py
+graphite/bin/carbon-relay.py
+graphite/conf/aggregation-rules.conf.example
+graphite/conf/carbon.amqp.conf.example
+graphite/conf/carbon.conf.example
+graphite/conf/relay-rules.conf.example
+graphite/conf/rewrite-rules.conf.example
+graphite/conf/storage-schemas.conf.example
+graphite/lib/carbon-0.9.8-py2.7.egg-info
+graphite/lib/carbon/__init__.py
+graphite/lib/carbon/__init__.pyc
+graphite/lib/carbon/aggregator/__init__.py
+graphite/lib/carbon/aggregator/__init__.pyc
+graphite/lib/carbon/aggregator/buffers.py
+graphite/lib/carbon/aggregator/buffers.pyc
+graphite/lib/carbon/aggregator/client.py
+graphite/lib/carbon/aggregator/client.pyc
+graphite/lib/carbon/aggregator/receiver.py
+graphite/lib/carbon/aggregator/receiver.pyc
+graphite/lib/carbon/aggregator/rules.py
+graphite/lib/carbon/aggregator/rules.pyc
+graphite/lib/carbon/amqp0-8.xml
+graphite/lib/carbon/amqp_listener.py
+graphite/lib/carbon/amqp_listener.pyc
+graphite/lib/carbon/amqp_publisher.py
+graphite/lib/carbon/amqp_publisher.pyc
+graphite/lib/carbon/cache.py
+graphite/lib/carbon/cache.pyc
+graphite/lib/carbon/conf.py
+graphite/lib/carbon/conf.pyc
+graphite/lib/carbon/events.py
+graphite/lib/carbon/events.pyc
+graphite/lib/carbon/instrumentation.py
+graphite/lib/carbon/instrumentation.pyc
+graphite/lib/carbon/listeners.py
+graphite/lib/carbon/listeners.pyc
+graphite/lib/carbon/log.py
+graphite/lib/carbon/log.pyc
+graphite/lib/carbon/manhole.py
+graphite/lib/carbon/manhole.pyc
+graphite/lib/carbon/relay.py
+graphite/lib/carbon/relay.pyc
+graphite/lib/carbon/rewrite.py
+graphite/lib/carbon/rewrite.pyc
+graphite/lib/carbon/rules.py
+graphite/lib/carbon/rules.pyc
+graphite/lib/carbon/storage.py
+graphite/lib/carbon/storage.pyc
+graphite/lib/carbon/util.py
+graphite/lib/carbon/util.pyc
+graphite/lib/carbon/writer.py
+graphite/lib/carbon/writer.pyc
+@dirrm graphite/lib/carbon/aggregator
+@dirrm graphite/lib/carbon
+@exec mkdir -p %D/graphite/storage/whisper
+@exec mkdir -p %D/graphite/storage/rrd
+@exec mkdir -p %D/graphite/storage/log
+@exec mkdir -p %D/graphite/storage/lists
