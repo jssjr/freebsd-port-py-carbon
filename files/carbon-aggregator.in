@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# PROVIDE: carbon_aggregator
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable carbon_aggregator:
+#
+#carbon_aggregator_enable="YES"
+
+. /etc/rc.subr
+
+name="carbon_aggregator"
+rcvar=`set_rcvar`
+
+required_files="%%ETCDIR%%/carbon.conf %%ETCDIR%%/aggregation-rules.conf"
+
+load_rc_config $name
+
+: ${carbon_aggregator_enable:=NO}
+: ${carbon_aggregator_config:="%%ETCDIR%%/carbon.conf"}
+: ${carbon_aggregator_rules:="%%ETCDIR%%/aggregator-rules.conf"}
+: ${carbon_aggregator_pidfile:="/var/run/${name}.pid"}
+: ${carbon_aggregator_logdir:="/var/log/"}
+: ${carbon_aggregator_flags:="--pidfile=${carbon_aggregator_pidfile} --config=${carbon_aggregator_config} --logdir=${carbon_aggregator_logdir} --rules=${carbon_aggregator_rules}"}
+
+command="%%PREFIX%%/bin/carbon-aggregator.py"
+
+start_cmd="${command} ${carbon_aggregator_flags} start"
+stop_cmd="${command} ${carbon_aggregator_flags} stop"
+status_cmd="${command} ${carbon_aggregator_flags} status"
+
+run_rc_command "$1"
