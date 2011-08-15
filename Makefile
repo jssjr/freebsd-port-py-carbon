@@ -20,6 +20,8 @@ MAKE_JOBS_SAFE=	yes
 
 FETCH_ARGS=	"-pRr"		# default '-AFpr' prevents 302 redirects by launchpad
 
+BUILD_DEPENDS=  ${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twistedCore
+
 USE_PYTHON=	2.5+
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_NOEGGINFO=	yes
