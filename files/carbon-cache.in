@@ -13,8 +13,6 @@
 name="carbon_cache"
 rcvar=`set_rcvar`
 
-required_files="%%ETCDIR%%/carbon.conf %%ETCDIR%%/storage-schemas.conf"
-
 load_rc_config $name
 
 : ${carbon_cache_enable:=NO}
@@ -27,17 +25,16 @@ load_rc_config $name
 
 command="%%PREFIX%%/bin/carbon-cache.py"
 
-start_cmd="${name}_start"
+start_cmd="${command} ${carbon_cache_flags} start"
+restart_cmd="${name}_restart"
 stop_cmd="${command} ${carbon_cache_flags} stop"
 status_cmd="${command} ${carbon_cache_flags} status"
 
-carbon_cache_start()
+carbon_cache_restart()
 {
+        ${command} ${carbon_cache_flags} stop
+        sleep 2
         ${command} ${carbon_cache_flags} start
-        local _PID=$$
-        if [ ! -f ${carbon_cache_pidfile} ] ; then
-                echo "${_PID}" > ${carbon_cache_pidfile}
-        fi
 }
 
 run_rc_command "$1"
