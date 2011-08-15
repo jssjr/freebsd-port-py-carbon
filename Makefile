@@ -30,7 +30,7 @@ PYDISTUTILS_NOEGGINFO=	yes
 
 CARBON_DBDIR?=	"/var/db/carbon"
 
-USE_RC_SUBR=	carbon-aggregator.sh carbon-cache.sh carbon-relay.sh
+USE_RC_SUBR=	carbon-aggregator carbon-cache.sh carbon-relay.sh
 
 .include <bsd.port.pre.mk>
 
