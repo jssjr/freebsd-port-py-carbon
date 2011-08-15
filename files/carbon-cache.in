@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# PROVIDE: carbon_cache
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable carbon_cache:
+#
+#carbon_cache_enable="YES"
+
+. /etc/rc.subr
+
+name="carbon_cache"
+rcvar=`set_rcvar`
+
+required_files="%%ETCDIR%%/carbon.conf %%ETCDIR%%/storage-schemas.conf"
+
+load_rc_config $name
+
+: ${carbon_cache_enable:=NO}
+: ${carbon_cache_config:="%%ETCDIR%%/carbon.conf"}
+: ${carbon_cache_confdir:="%%ETCDIR%%"}
+: ${carbon_cache_storage:="%%CARBON_DBDIR%%"}
+: ${carbon_cache_pidfile:="/var/run/${name}.pid"}
+: ${carbon_cache_logdir:="/var/log/"}
+: ${carbon_cache_flags:="--pidfile=${carbon_cache_pidfile} --config=${carbon_cache_config} --logdir=${carbon_cache_logdir} --confdir=${carbon_cache_confdir} --storage=${carbon_cache_storage}"}
+
+command="%%PREFIX%%/bin/carbon-cache.py"
+
+start_cmd="${name}_start"
+stop_cmd="${command} ${carbon_cache_flags} stop"
+status_cmd="${command} ${carbon_cache_flags} status"
+
+carbon_cache_start()
+{
+        ${command} ${carbon_cache_flags} start
+        local _PID=$$
+        if [ ! -f ${carbon_cache_pidfile} ] ; then
+                echo "${_PID}" > ${carbon_cache_pidfile}
+        fi
+}
+
+run_rc_command "$1"
