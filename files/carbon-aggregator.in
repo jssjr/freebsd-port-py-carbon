@@ -13,13 +13,11 @@
 name="carbon_aggregator"
 rcvar=`set_rcvar`
 
-required_files="%%ETCDIR%%/carbon.conf %%ETCDIR%%/aggregation-rules.conf"
-
 load_rc_config $name
 
 : ${carbon_aggregator_enable:=NO}
 : ${carbon_aggregator_config:="%%ETCDIR%%/carbon.conf"}
-: ${carbon_aggregator_rules:="%%ETCDIR%%/aggregator-rules.conf"}
+: ${carbon_aggregator_rules:="%%ETCDIR%%/aggregation-rules.conf"}
 : ${carbon_aggregator_pidfile:="/var/run/${name}.pid"}
 : ${carbon_aggregator_logdir:="/var/log/"}
 : ${carbon_aggregator_flags:="--pidfile=${carbon_aggregator_pidfile} --config=${carbon_aggregator_config} --logdir=${carbon_aggregator_logdir} --rules=${carbon_aggregator_rules}"}
