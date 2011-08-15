@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# PROVIDE: carbon_relay
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable carbon_relay:
+#
+#carbon_relay_enable="YES"
+
+. /etc/rc.subr
+
+name="carbon_relay"
+rcvar=`set_rcvar`
+
+load_rc_config $name
+
+: ${carbon_relay_enable:=NO}
+: ${carbon_relay_config:="%%ETCDIR%%/carbon.conf"}
+: ${carbon_relay_rules:="%%ETCDIR%%/relay-rules.conf"}
+: ${carbon_relay_pidfile:="/var/run/${name}.pid"}
+: ${carbon_relay_logdir:="/var/log/"}
+: ${carbon_relay_flags:="--pidfile=${carbon_relay_pidfile} --config=${carbon_relay_config} --logdir=${carbon_relay_logdir} --rules=${carbon_relay_rules}"}
+
+command="%%PREFIX%%/bin/carbon-relay.py"
+
+start_cmd="${command} ${carbon_relay_flags} start"
+stop_cmd="${command} ${carbon_relay_flags} stop"
+status_cmd="${command} ${carbon_relay_flags} status"
+
+run_rc_command "$1"
+
